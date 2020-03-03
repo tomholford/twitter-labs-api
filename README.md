@@ -30,7 +30,7 @@ Currently, the following endpoints are implemented:
 
 ## Roadmap
 
-Since this project is initially driven by my own usage of the API, I will focus on implementing and refinining the Tweets, Users, and Metrics endpoints. If this repo gets enough interest, I might implement the other endpoints.
+Since this project is initially driven by my own usage of the API, I will focus on implementing and refinining the Tweets, Users, and Metrics endpoints. If this repo gets enough interest, I might implement the other endpoints and create a proper `.gemspec`. And of course, contributions are welcome :)
 
 ## Dependencies
 
