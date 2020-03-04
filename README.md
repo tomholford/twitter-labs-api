@@ -24,9 +24,9 @@ api.get_tweet(id: '1234671272602193920')
 ### Status
 Currently, the following endpoints are implemented:
 
-- `LabsAPI#get_tweet` - get a single tweet, by `id`
-- `LabsAPI#get_tweets` - get a list of tweets, by `ids`
-- `LabsAPI#get_user`, - get a single user, by `id`
+- `LabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
+- `LabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
+- `LabsAPI#get_user`, - Retrieve a single user object with an `id`
 
 ## Roadmap
 
