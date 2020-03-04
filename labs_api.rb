@@ -6,9 +6,15 @@ require 'active_support/core_ext/hash/indifferent_access'
 DEFAULT_TWEET_FIELDS = %w[id author_id created_at lang public_metrics].join(',').freeze
 DEFAULT_USER_FIELDS = %w[name username].join(',').freeze
 
+class LabsAPIError < StandardError; end
+
 class LabsAPI
-  def initialize(bearer_token:)
+  attr_accessor :bearer_token, :debug
+
+  def initialize(bearer_token:, debug: false)
     @bearer_token = bearer_token
+    @debug = debug
+    require 'httplog' if debug
   end
 
   def get_tweet(id:, tweet_fields: DEFAULT_TWEET_FIELDS)
@@ -45,7 +51,7 @@ class LabsAPI
     uri = URI.parse(url)
     uri.query = URI.encode_www_form(params)
     request = Net::HTTP::Get.new(uri)
-    request['Authorization'] = "Bearer #{@bearer_token}"
+    request['Authorization'] = "Bearer #{bearer_token}"
     req_options = { use_ssl: uri.scheme == 'https' }
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
@@ -55,11 +61,22 @@ class LabsAPI
     is_collection ? handle_collection(response) : handle_single(response)
   end
 
+  # TODO: handle non-api errs (e.g., timeouts)
   def handle_single(response)
-    response.is_a?(Net::HTTPSuccess) ? JSON.parse(response.body)['data'].with_indifferent_access : nil
+    return JSON.parse(response.body)['data'].with_indifferent_access if response.is_a?(Net::HTTPSuccess)
+
+    handle_api_error(response)
   end
 
   def handle_collection(response)
-    response.is_a?(Net::HTTPSuccess) ? JSON.parse(response.body)['data'].map(&:with_indifferent_access) : nil
+    return JSON.parse(response.body)['data'].map(&:with_indifferent_access) if response.is_a?(Net::HTTPSuccess)
+
+    handle_api_error(response)
+  end
+
+  def handle_api_error(response)
+    error = JSON.parse(response.body)
+
+    raise LabsAPIError, "#{error['title']}: #{error['detail']} #{error['type']}"
   end
 end
