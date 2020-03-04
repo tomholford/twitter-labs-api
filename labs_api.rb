@@ -45,6 +45,16 @@ class LabsAPI
     make_request(url: url, params: params)
   end
 
+  def get_users(ids:, user_fields: DEFAULT_USER_FIELDS)
+    url = 'https://api.twitter.com/labs/2/users'
+    params = {
+      'ids' => ids.join(','),
+      'user.fields' => user_fields
+    }.compact
+
+    make_request(url: url, params: params, is_collection: true)
+  end
+
   private
 
   def make_request(url:, params: {}, is_collection: false)

@@ -27,6 +27,7 @@ Currently, the following endpoints are implemented:
 - `LabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
 - `LabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
 - `LabsAPI#get_user`, - Retrieve a single user object with an `id`
+- `LabsAPI#get_users`, - Retrieve multiple user objects with a collection of `ids`
 
 ## Roadmap
 
