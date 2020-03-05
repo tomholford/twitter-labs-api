@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'twitter_labs_api'
+require 'irb'
+
+token = File.open(File.expand_path('~/.secrets/twitter/test.token', __dir__)).read.strip
+api = TwitterLabsAPI.new(bearer_token: token, debug: true)
+
+binding.irb

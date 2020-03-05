@@ -6,9 +6,9 @@ require 'active_support/core_ext/hash/indifferent_access'
 DEFAULT_TWEET_FIELDS = %w[id author_id created_at lang public_metrics].join(',').freeze
 DEFAULT_USER_FIELDS = %w[name username].join(',').freeze
 
-class LabsAPIError < StandardError; end
+class TwitterLabsAPIError < StandardError; end
 
-class LabsAPI
+class TwitterLabsAPI
   attr_accessor :bearer_token, :debug
 
   def initialize(bearer_token:, debug: false)
@@ -87,6 +87,6 @@ class LabsAPI
   def handle_api_error(response)
     error = JSON.parse(response.body)
 
-    raise LabsAPIError, "#{error['title']}: #{error['detail']} #{error['type']}"
+    raise TwitterLabsAPIError, "#{error['title']}: #{error['detail']} #{error['type']}"
   end
 end

@@ -1,6 +1,6 @@
 # twitter-labs-api
 
-A basic implementation of a Twitter Labs API client in Ruby. This project uses the v2 endpoints announced [here](https://twittercommunity.com/t/releasing-a-new-version-of-labs-endpoints/134219/3).
+A basic implementation of a Twitter Labs API client as a handy Ruby [gem](https://rubygems.org/gems/twitter_labs_api). This project uses the v2 endpoints announced [here](https://twittercommunity.com/t/releasing-a-new-version-of-labs-endpoints/134219/3).
 
 ## Usage
 
@@ -9,12 +9,18 @@ All one needs is a Twitter [bearer token](https://developer.twitter.com/en/docs/
 
 One easy way to get a bearer token is to use [this method](https://www.rubydoc.info/gems/twitter/Twitter/REST/Client#bearer_token%3F-instance_method) from https://github.com/sferik/twitter.
 
+### Setup
+
+```shell
+gem install twitter_labs_api
+```
+
 ### Example
 
 ```ruby
-requre `labs_api`
+requre `twitter_labs_api`
 
-api = LabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
+api = TwitterLabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
 
 api.get_tweet(id: '1234671272602193920')
 
@@ -24,10 +30,10 @@ api.get_tweet(id: '1234671272602193920')
 ### Status
 Currently, the following endpoints are implemented:
 
-- `LabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
-- `LabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
-- `LabsAPI#get_user`, - Retrieve a single user object with an `id`
-- `LabsAPI#get_users`, - Retrieve multiple user objects with a collection of `ids`
+- `TwitterLabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
+- `TwitterLabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
+- `TwitterLabsAPI#get_user`, - Retrieve a single user object with an `id`
+- `TwitterLabsAPI#get_users`, - Retrieve multiple user objects with a collection of `ids`
 
 ## Roadmap
 
