@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    twitter-labs-api (0.1.0)
+    twitter_labs_api (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -35,7 +35,7 @@ DEPENDENCIES
   bundler (~> 2.0)
   httplog
   rake (~> 10.0)
-  twitter-labs-api!
+  twitter_labs_api!
 
 BUNDLED WITH
    2.0.2

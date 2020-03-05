@@ -1,10 +1,10 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'labs_api/version'
+require 'twitter_labs_api/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'twitter-labs-api'
-  spec.version       = LabsAPI::VERSION
+  spec.name          = 'twitter_labs_api'
+  spec.version       = TwitterLabsAPI::VERSION
   spec.authors       = ['tomholford']
   spec.email         = ['tomholford@users.noreply.github.com']
 

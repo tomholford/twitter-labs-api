@@ -14,7 +14,7 @@ One easy way to get a bearer token is to use [this method](https://www.rubydoc.i
 ```ruby
 requre `labs_api`
 
-api = LabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
+api = TwitterLabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
 
 api.get_tweet(id: '1234671272602193920')
 
@@ -24,10 +24,10 @@ api.get_tweet(id: '1234671272602193920')
 ### Status
 Currently, the following endpoints are implemented:
 
-- `LabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
-- `LabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
-- `LabsAPI#get_user`, - Retrieve a single user object with an `id`
-- `LabsAPI#get_users`, - Retrieve multiple user objects with a collection of `ids`
+- `TwitterLabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
+- `TwitterLabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
+- `TwitterLabsAPI#get_user`, - Retrieve a single user object with an `id`
+- `TwitterLabsAPI#get_users`, - Retrieve multiple user objects with a collection of `ids`
 
 ## Roadmap
 
