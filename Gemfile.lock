@@ -21,7 +21,7 @@ GEM
     minitest (5.14.0)
     rack (2.2.2)
     rainbow (3.0.0)
-    rake (10.5.0)
+    rake (13.0.1)
     thread_safe (0.3.6)
     tzinfo (1.2.6)
       thread_safe (~> 0.1)
@@ -34,7 +34,7 @@ DEPENDENCIES
   activesupport
   bundler (~> 2.0)
   httplog
-  rake (~> 10.0)
+  rake (~> 13.0)
   twitter_labs_api!
 
 BUNDLED WITH
