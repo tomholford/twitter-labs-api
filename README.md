@@ -17,6 +17,7 @@ gem install twitter_labs_api
 
 ### Example
 
+#### Getting a Tweet by ID
 ```ruby
 requre `twitter_labs_api`
 
@@ -25,6 +26,18 @@ api = TwitterLabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
 api.get_tweet(id: '1234671272602193920')
 
 >> {"data"=>{"author_id"=>"44196397", "created_at"=>"2020-03-03T02:45:45.000Z", "id"=>"1234671272602193920", "lang"=>"und", "public_metrics"=>{"retweet_count"=>4534, "reply_count"=>1036, "like_count"=>43489, "quote_count"=>224}, "text"=>"✌️ bro https://t.co/nJ7CUyhr2j"}}
+```
+
+#### Specifying which fields to include in the response
+
+By default, the gem requests the 'default' fields for each entity. See the [API Reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference) for available fields. One can customize the response payload like so:
+
+```ruby
+my_fields = %w[id author_id created_at text]
+
+api.get_tweet(id: '1235508591232090112', tweet_fields: my_fields)
+
+>> {"author_id"=>"229708614", "created_at"=>"2020-03-05T10:12:57.000Z", "id"=>"1235508591232090112", "text"=>"Hot take: coronavirus will not boost remote work in the long run because spur-of-the-moment work-from-home for in-person companies is likely to be a shitshow."}
 ```
 
 ### Status
