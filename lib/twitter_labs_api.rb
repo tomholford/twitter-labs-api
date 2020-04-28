@@ -77,7 +77,7 @@ class TwitterLabsAPI
       http.request(request)
     end
 
-    raise TwitterLabsAPIError("#{api_response.code} #{api_response.msg}") unless api_response.is_a?(Net::HTTPSuccess)
+    raise(TwitterLabsAPIError, "#{api_response.code} #{api_response.msg}") unless api_response.is_a?(Net::HTTPSuccess)
 
     self.parsed_response = JSON.parse(api_response.body)
 
