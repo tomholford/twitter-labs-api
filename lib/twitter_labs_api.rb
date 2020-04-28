@@ -6,11 +6,11 @@ require 'active_support/core_ext/hash/indifferent_access'
 DEFAULT_TWEET_FIELDS = %w[id author_id created_at lang public_metrics].freeze
 DEFAULT_USER_FIELDS = %w[name username].freeze
 
-class TwitterLabsAPIError < StandardError; end
-
 # A basic implementation of a Twitter Labs API client.
 class TwitterLabsAPI
   attr_accessor :bearer_token, :debug, :api_response, :parsed_response
+
+  class TwitterLabsAPIError < StandardError; end
 
   def initialize(bearer_token:, debug: false)
     @bearer_token = bearer_token
