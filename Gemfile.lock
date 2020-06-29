@@ -19,7 +19,7 @@ GEM
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     minitest (5.14.1)
-    rack (2.2.2)
+    rack (2.2.3)
     rainbow (3.0.0)
     rake (13.0.1)
     thread_safe (0.3.6)
