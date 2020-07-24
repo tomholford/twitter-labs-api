@@ -1,3 +1,8 @@
+# 0.4.0 - 24 July 2020
+
+- Better exception-handling: when API returns an error, a `TwitterLabsAPI::APIError` is thrown. It has the `Net::HTTP` response as an attribute so that the error can be handled properly. See the README for an example.
+
+
 # 0.3.0 - 28 April 2020
 
 - Fix: namespace of error class
