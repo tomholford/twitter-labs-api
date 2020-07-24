@@ -4,3 +4,4 @@ gemspec
 
 gem 'activesupport'
 gem 'httplog'
+gem 'pry'

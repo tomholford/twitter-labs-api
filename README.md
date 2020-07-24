@@ -40,6 +40,21 @@ api.get_tweet(id: '1235508591232090112', tweet_fields: my_fields)
 >> {"author_id"=>"229708614", "created_at"=>"2020-03-05T10:12:57.000Z", "id"=>"1235508591232090112", "text"=>"Hot take: coronavirus will not boost remote work in the long run because spur-of-the-moment work-from-home for in-person companies is likely to be a shitshow."}
 ```
 
+#### API Errors
+
+Sometimes the API will respond with an error, for example `429 Too Many Requests`. The gem will throw an error with the `Net::HTTP` response as an attribute for proper exception-handling by the consuming app:
+
+```ruby
+def my_twitter_request
+  api.get_tweet(id: '1235508591232090112', tweet_fields: my_fields)
+
+rescue TwitterLabsAPI::APIError => e
+  puts e.msg # 429 Too Many Requests
+  puts e.response # <Net::HTTPTooManyRequests 429 Too Many Requests readbody=true>
+  # do something with the Net::HTTP response...
+end
+```
+
 ### Status
 Currently, the following endpoints are implemented:
 

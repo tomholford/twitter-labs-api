@@ -10,7 +10,17 @@ DEFAULT_USER_FIELDS = %w[name username].freeze
 class TwitterLabsAPI
   attr_accessor :bearer_token, :debug, :api_response, :parsed_response
 
-  class TwitterLabsAPIError < StandardError; end
+  class APIError < StandardError
+    DEFAULT_MESSAGE = 'Twitter Labs API error, check the response attribute'.freeze
+
+    attr_reader :response
+
+    def initialize(msg = DEFAULT_MESSAGE, response = nil)
+      @response = response
+
+      super(msg)
+    end
+  end
 
   def initialize(bearer_token:, debug: false)
     @bearer_token = bearer_token
@@ -77,7 +87,7 @@ class TwitterLabsAPI
       http.request(request)
     end
 
-    raise(TwitterLabsAPIError, "#{api_response.code} #{api_response.msg}") unless api_response.is_a?(Net::HTTPSuccess)
+    raise_http_error unless api_response.is_a?(Net::HTTPSuccess)
 
     self.parsed_response = JSON.parse(api_response.body)
 
@@ -98,9 +108,13 @@ class TwitterLabsAPI
     parsed_response['data'].map(&:with_indifferent_access)
   end
 
+  def raise_http_error
+    raise(APIError.new("#{api_response.code} #{api_response.msg}", api_response))
+  end
+
   def handle_api_error
     error = parsed_response['errors'].first
 
-    raise TwitterLabsAPIError, "#{error['title']}: #{error['detail']} #{error['type']}"
+    raise APIError.new("#{error['title']}: #{error['detail']} #{error['type']}", api_response)
   end
 end
