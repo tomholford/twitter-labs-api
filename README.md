@@ -19,7 +19,7 @@ gem install twitter_labs_api
 
 #### Getting a Tweet by ID
 ```ruby
-requre `twitter_labs_api`
+require `twitter_labs_api`
 
 api = TwitterLabsAPI.new(bearer_token: 'YOUR-BEARER-TOKEN')
 
@@ -42,7 +42,7 @@ api.get_tweet(id: '1235508591232090112', tweet_fields: my_fields)
 
 #### API Errors
 
-Sometimes the API will respond with an error, for example `429 Too Many Requests`. The gem will throw an error with the `Net::HTTP` response as an attribute for proper exception-handling by the consuming app:
+Sometimes the API will respond with an error, for example, `429 Too Many Requests`. The gem will throw an error with the `Net::HTTP` response as an attribute for proper exception-handling by the consuming app:
 
 ```ruby
 def my_twitter_request
@@ -65,7 +65,7 @@ Currently, the following endpoints are implemented:
 
 ## Roadmap
 
-Since this project is initially driven by my own usage of the API, I will focus on implementing and refinining the Tweets, Users, and Metrics endpoints. If this repo gets enough interest, I might implement the other endpoints and create a proper `.gemspec`. And of course, contributions are welcome :)
+Since this project is initially driven by my own usage of the API, I will focus on implementing and refining the Tweets, Users, and Metrics endpoints. If this repo gets enough interest, I might implement the other endpoints and create a proper `.gemspec`. And of course, contributions are welcome :)
 
 ## Dependencies
 
