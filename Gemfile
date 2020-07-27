@@ -1,7 +1,13 @@
 source 'https://rubygems.org'
 
-gemspec
+group :development, :test do
+  gem 'amazing_print'
+  gem 'httplog'
+  gem 'irbtools'
+  gem 'pry'
+  gem 'rake'
+  gem 'rspec'
+  gem 'webmock'
+end
 
-gem 'activesupport'
-gem 'httplog'
-gem 'pry'
+gemspec
