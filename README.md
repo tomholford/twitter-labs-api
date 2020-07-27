@@ -58,11 +58,16 @@ end
 ### Status
 Currently, the following endpoints are implemented:
 
-- `TwitterLabsAPI#get_tweet` - Retrieve a single Tweet object with an `id`
-- `TwitterLabsAPI#get_tweets` - Retrieve multiple Tweets with a collection of `ids`
-- `TwitterLabsAPI#get_user` - Retrieve a single user object with an `id`
-- `TwitterLabsAPI#get_users` - Retrieve multiple user objects with a collection of `ids`
-- `TwitterLabsAPI#get_users_by_username` - Retrieve multiple user objects with a collection of `usernames`
+#### Tweets
+
+- `TwitterLabsAPI#get_tweet` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-tweets-id)) - Retrieve a single Tweet object with an `id`
+- `TwitterLabsAPI#get_tweets` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-tweets)) - Retrieve multiple Tweets with a collection of `ids`
+
+#### Users
+
+- `TwitterLabsAPI#get_user` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-users-id)) - Retrieve a single user object with an `id`
+- `TwitterLabsAPI#get_users` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-users)) - Retrieve multiple user objects with a collection of `ids`
+- `TwitterLabsAPI#get_users_by_username` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-users)) - Retrieve multiple user objects with a collection of `usernames`
 
 ## Roadmap
 
