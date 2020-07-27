@@ -5,3 +5,5 @@ gemspec
 gem 'activesupport'
 gem 'httplog'
 gem 'pry'
+gem 'rspec'
+gem 'webmock'
