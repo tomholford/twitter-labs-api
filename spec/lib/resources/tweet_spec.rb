@@ -1,9 +1,9 @@
-describe TwitterLabsAPI::Resources::User do
+describe TwitterLabsAPI::Resources::Tweet do
   let(:client) { TwitterLabsAPI::Client.new(bearer_token: 'token') }
 
-  describe '#get_user' do
+  describe '#get_tweet' do
     let(:endpoint_stub) do
-      stub_request(:get, 'https://api.twitter.com/labs/2/users/1?user.fields=name,username')
+      stub_request(:get, 'https://api.twitter.com/labs/2/tweets/1?tweet.fields=id,author_id,created_at,lang,public_metrics')
         .with(
           headers:
             {
@@ -21,9 +21,9 @@ describe TwitterLabsAPI::Resources::User do
       endpoint_stub
     end
 
-    subject { client.get_user(id: '1') }
+    subject { client.get_tweet(id: '1') }
 
-    it 'queries the /users/:id endpoint' do
+    it 'queries the /tweets/:id endpoint' do
       subject
 
       expect(endpoint_stub).to have_been_requested
@@ -41,7 +41,7 @@ describe TwitterLabsAPI::Resources::User do
       end
     end
 
-    context 'api error (e.g., user not found)' do
+    context 'api error (e.g., tweet not found)' do
       let(:response_body) { '{"data":{}, "errors":[{"title":"", "detail":"", "type":""}]}' }
 
       it 'raises an APIError' do
@@ -50,9 +50,9 @@ describe TwitterLabsAPI::Resources::User do
     end
   end
 
-  describe '#get_users' do
+  describe '#get_tweets' do
     let(:endpoint_stub) do
-      stub_request(:get, "https://api.twitter.com/labs/2/users?ids=1&user.fields=name,username").
+      stub_request(:get, 'https://api.twitter.com/labs/2/tweets?ids=1&tweet.fields=id,author_id,created_at,lang,public_metrics').
       with(
         headers: {
         'Authorization'=>'Bearer token',
@@ -68,9 +68,9 @@ describe TwitterLabsAPI::Resources::User do
       endpoint_stub
     end
 
-    subject { client.get_users(ids: ['1']) }
+    subject { client.get_tweets(ids: ['1']) }
 
-    it 'queries the /users endpoint' do
+    it 'queries the /tweets endpoint' do
       subject
 
       expect(endpoint_stub).to have_been_requested
@@ -88,7 +88,7 @@ describe TwitterLabsAPI::Resources::User do
       end
     end
 
-    context 'api error (e.g., user not found)' do
+    context 'api error (e.g., tweet not found)' do
       let(:response_body) { '{"data":{}, "errors":[{"title":"", "detail":"", "type":""}]}' }
 
       it 'raises an APIError' do
