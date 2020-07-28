@@ -1,5 +1,7 @@
 # twitter-labs-api
 
+[![Labs v2](https://img.shields.io/static/v1?label=Twitter%20API&message=Developer%20Labs%20v2&color=192430&style=flat&logo=Twitter)](https://developer.twitter.com/en/docs/labs/overview/versioning)
+
 A basic implementation of a Twitter Labs API client as a handy Ruby [gem](https://rubygems.org/gems/twitter_labs_api). This project uses the v2 endpoints announced [here](https://twittercommunity.com/t/releasing-a-new-version-of-labs-endpoints/134219/3).
 
 ## Usage
