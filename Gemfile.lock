@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    twitter_labs_api (0.5.1)
+    twitter_labs_api (0.5.2)
       activesupport (~> 6.0)
       httplog (~> 1.4)
 
