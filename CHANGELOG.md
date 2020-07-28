@@ -1,3 +1,8 @@
+# 0.5.1 - 28 July 2020
+
+- Add `User-Agent` request header
+- Add `hide_reply`
+
 # 0.5.0 - 27 July 2020
 
 - Refactor structure to prepare for adding additional API endpoints

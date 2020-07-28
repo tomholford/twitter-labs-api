@@ -17,10 +17,10 @@ module TwitterLabsAPI
 
     private
 
-    def make_request(url:, params: {}, is_collection: false)
+    def make_request(url:, params: {}, is_collection: false, method: :get)
       uri = URI.parse(url)
       uri.query = URI.encode_www_form(params)
-      request = Net::HTTP::Get.new(uri)
+      request = http_adapter(method).new(uri)
       request['Authorization'] = "Bearer #{bearer_token}"
       request['User-Agent'] = "twitter_labs_api gem #{TwitterLabsAPI::VERSION}"
       req_options = { use_ssl: uri.scheme == 'https' }
@@ -37,7 +37,16 @@ module TwitterLabsAPI
   
       is_collection ? handle_collection : handle_single
     end
-  
+
+    def http_adapter(method)
+      case method
+      when :put
+        Net::HTTP::Put
+      else
+        Net::HTTP::Get
+      end
+    end
+
     def error_response?
       parsed_response.key?('errors')
     end
