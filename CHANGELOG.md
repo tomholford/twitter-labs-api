@@ -1,3 +1,7 @@
+# 0.6.0 - 28 July 2020
+
+- Fix: broken dependency
+
 # 0.5.2 - 28 July 2020
 
 - Add `search`
