@@ -63,6 +63,7 @@ Currently, the following endpoints are implemented:
 - `TwitterLabsAPI#get_tweet` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-tweets-id)) - Retrieve a single Tweet object with an `id`
 - `TwitterLabsAPI#get_tweets` ([docs](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference/get-tweets)) - Retrieve multiple Tweets with a collection of `ids`
 - `TwitterLabsAPI#hide_reply` ([docs](https://developer.twitter.com/en/docs/labs/hide-replies/api-reference/put-hidden)) - Hide a reply by referencing it's `id`; must be in a conversation belonging to the authenticating user
+- `TwitterLabsAPI#search` ([docs](https://developer.twitter.com/en/docs/labs/recent-search/api-reference/get-recent-search)) - Returns Tweets from the last 7 days that match a search query.
 
 #### Users
 
