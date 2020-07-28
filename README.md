@@ -5,9 +5,9 @@ A basic implementation of a Twitter Labs API client as a handy Ruby [gem](https:
 ## Usage
 
 ### Prerequisite
-All one needs is a Twitter [bearer token](https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/bearer-tokens) to get started.
+All one needs is a Twitter [bearer token](https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/bearer-tokens) to get started. The bearer token is available on the 'Tokens and Keys' page within your app's dashboard on the [Twitter for Developers](https://developer.twitter.com/) site.
 
-One easy way to get a bearer token is to use [this method](https://www.rubydoc.info/gems/twitter/Twitter/REST/Client#bearer_token%3F-instance_method) from https://github.com/sferik/twitter.
+Alternatively, one can get a bearer token using [this method](https://www.rubydoc.info/gems/twitter/Twitter/REST/Client#bearer_token%3F-instance_method) from https://github.com/sferik/twitter.
 
 ### Setup
 
@@ -72,7 +72,9 @@ Currently, the following endpoints are implemented:
 
 ## Roadmap
 
-Since this project is initially driven by my own usage of the API, I will focus on implementing and refining the Tweets, Users, and Metrics endpoints. If this repo gets enough interest, I might implement the other endpoints and create a proper `.gemspec`. And of course, contributions are welcome :)
+Currently focused on implementing support for all v2 endpoints; if there is enough interest, I will add v1 endpoint support as well.
+
+And of course, contributions are welcome :)
 
 ## Dependencies
 
