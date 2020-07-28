@@ -1,3 +1,8 @@
+# 0.5.2 - 28 July 2020
+
+- Add `search`
+- Finish `rdoc` coverage
+
 # 0.5.1 - 28 July 2020
 
 - Add `User-Agent` request header
