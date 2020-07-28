@@ -22,8 +22,9 @@ module TwitterLabsAPI
       uri.query = URI.encode_www_form(params)
       request = Net::HTTP::Get.new(uri)
       request['Authorization'] = "Bearer #{bearer_token}"
+      request['User-Agent'] = "twitter_labs_api gem #{TwitterLabsAPI::VERSION}"
       req_options = { use_ssl: uri.scheme == 'https' }
-  
+
       self.api_response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
         http.request(request)
       end
