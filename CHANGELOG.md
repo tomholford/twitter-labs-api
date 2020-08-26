@@ -1,3 +1,23 @@
+# 0.7.0 - 28 August 2020
+
+- Refactor interface for requesting custom response fields
+
+## Breaking Change
+
+Heads up, the argument to request fields was previously called `tweet_fields`; it is now called `fields`. 
+
+```ruby
+api.get_tweet(id: '123455683780', fields: requested_fields)
+```
+
+The `fields` parameter now supports multiple different data types (instead of just Tweet attributes). So for example, to request the URL of an embedded media item:
+
+```ruby
+requested_fields = { tweet: %w[id username], media: %w[url] }
+
+api.get_tweet(id: my_id, fields: requested_fields)
+```
+
 # 0.6.0 - 28 July 2020
 
 - Fix: broken dependency

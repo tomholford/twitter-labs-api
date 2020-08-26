@@ -3,15 +3,22 @@ describe TwitterLabsAPI::Resources::Tweet do
 
   describe '#get_tweet' do
     let(:endpoint_stub) do
-      stub_request(:get, 'https://api.twitter.com/labs/2/tweets/1?tweet.fields=id,author_id,created_at,lang,public_metrics')
+      stub_request(:get, 'https://api.twitter.com/labs/2/tweets/1')
         .with(
+          query: expected_request_query,
           headers:
             {
-              'Authorization'=>'Bearer token',
-              'Host'=>'api.twitter.com',
+              'Authorization' => 'Bearer token',
+              'Host' => 'api.twitter.com',
             }
         )
         .to_return(status: response_status, body: response_body)
+    end
+
+    let(:expected_request_query) do
+      {
+        'tweet.fields' => 'id,author_id,created_at,lang,public_metrics'
+      }
     end
 
     let(:response_status) { 200 }
@@ -21,7 +28,13 @@ describe TwitterLabsAPI::Resources::Tweet do
       endpoint_stub
     end
 
-    subject { client.get_tweet(id: '1') }
+    let(:request_fields) do
+      {
+        'tweet' => %w[id author_id created_at lang public_metrics]
+      }
+    end
+
+    subject { client.get_tweet(id: '1', fields: request_fields) }
 
     it 'queries the /tweets/:id endpoint' do
       subject
@@ -48,18 +61,49 @@ describe TwitterLabsAPI::Resources::Tweet do
         expect { subject }.to raise_error(TwitterLabsAPI::APIError)
       end
     end
+
+    context 'custom field request' do
+      let(:expected_request_query) do
+        {
+          'tweet.fields' => 'id,author_id,created_at,lang,public_metrics',
+          'media.fields' => 'url'
+        }
+      end
+
+      let(:request_fields) do
+        {
+          'tweet' => %w[id author_id created_at lang public_metrics],
+          'media' => %w[url]
+        }
+      end
+
+      it 'queries the /tweets/:id endpoint' do
+        subject
+  
+        expect(endpoint_stub).to have_been_requested
+      end
+    end
   end
 
   describe '#get_tweets' do
     let(:endpoint_stub) do
-      stub_request(:get, 'https://api.twitter.com/labs/2/tweets?ids=1&tweet.fields=id,author_id,created_at,lang,public_metrics').
-      with(
-        headers: {
-        'Authorization'=>'Bearer token',
-        'Host'=>'api.twitter.com',
-        })
+      stub_request(:get, 'https://api.twitter.com/labs/2/tweets?ids=1&tweet.fields=id,author_id,created_at,lang,public_metrics')
+        .with(
+          query: expected_request_query,
+          headers: {
+            'Authorization' => 'Bearer token',
+            'Host' => 'api.twitter.com'
+          }
+        )
         .to_return(status: response_status, body: response_body)
-      end
+    end
+
+    let(:expected_request_query) do
+      {
+        'ids' => '1',
+        'tweet.fields' => 'id,author_id,created_at,lang,public_metrics'
+      }
+    end
 
     let(:response_status) { 200 }
     let(:response_body) { '{"data":{}}' }
@@ -68,7 +112,13 @@ describe TwitterLabsAPI::Resources::Tweet do
       endpoint_stub
     end
 
-    subject { client.get_tweets(ids: ['1']) }
+    subject { client.get_tweets(ids: ['1'], fields: request_fields) }
+
+    let(:request_fields) do
+      {
+        'tweet' => %w[id author_id created_at lang public_metrics]
+      }
+    end
 
     it 'queries the /tweets endpoint' do
       subject
@@ -93,6 +143,28 @@ describe TwitterLabsAPI::Resources::Tweet do
 
       it 'raises an APIError' do
         expect { subject }.to raise_error(TwitterLabsAPI::APIError)
+      end
+    end
+
+    context 'custom field request' do
+      let(:expected_request_query) do
+        {
+          'tweet.fields' => 'id,author_id,created_at,lang,public_metrics',
+          'media.fields' => 'url'
+        }
+      end
+
+      let(:request_fields) do
+        {
+          'tweet' => %w[id author_id created_at lang public_metrics],
+          'media' => %w[url]
+        }
+      end
+
+      it 'queries the /tweets/:ids endpoint' do
+        subject
+
+        expect(endpoint_stub).to have_been_requested
       end
     end
   end
@@ -150,14 +222,21 @@ describe TwitterLabsAPI::Resources::Tweet do
     let(:endpoint_stub) do
       stub_request(:get, 'https://api.twitter.com/labs/2/tweets/search')
         .with(
+          query: expected_request_query,
           headers:
             {
-              'Authorization'=>'Bearer token',
-              'Host'=>'api.twitter.com',
-            },
-          query: hash_including(query: 'test')
+              'Authorization' => 'Bearer token',
+              'Host' => 'api.twitter.com'
+            }
         )
         .to_return(status: response_status, body: response_body)
+    end
+
+    let(:expected_request_query) do
+      {
+        'query' => 'test',
+        'tweet.fields' => 'id,author_id,created_at,lang,public_metrics'
+      }
     end
 
     let(:response_status) { 200 }
@@ -167,7 +246,13 @@ describe TwitterLabsAPI::Resources::Tweet do
       endpoint_stub
     end
 
-    subject { client.search(query: 'test') }
+    subject { client.search(query: 'test', fields: request_fields) }
+
+    let(:request_fields) do
+      {
+        'tweet' => %w[id author_id created_at lang public_metrics]
+      }
+    end
 
     it 'queries the /tweets/search endpoint' do
       subject
@@ -192,6 +277,29 @@ describe TwitterLabsAPI::Resources::Tweet do
 
       it 'raises an APIError' do
         expect { subject }.to raise_error(TwitterLabsAPI::APIError)
+      end
+    end
+
+    context 'custom field request' do
+      let(:expected_request_query) do
+        {
+          'query' => 'test',
+          'tweet.fields' => 'id,author_id,created_at,lang,public_metrics',
+          'media.fields' => 'url'
+        }
+      end
+
+      let(:request_fields) do
+        {
+          'tweet' => %w[id author_id created_at lang public_metrics],
+          'media' => %w[url]
+        }
+      end
+
+      it 'queries the /tweets/search endpoint' do
+        subject
+
+        expect(endpoint_stub).to have_been_requested
       end
     end
   end
