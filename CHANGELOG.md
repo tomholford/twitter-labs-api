@@ -1,3 +1,5 @@
+breaking change for fields
+
 # 0.6.0 - 28 July 2020
 
 - Fix: broken dependency

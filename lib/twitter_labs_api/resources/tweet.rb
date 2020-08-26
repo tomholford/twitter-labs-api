@@ -6,7 +6,9 @@ module TwitterLabsAPI
 
       # Returns a variety of information about a single Tweet specified by the requested ID.
       # @param [String] :id the ID of the requested Tweet
-      # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
+      # @param [Hash] :fields a hash for fields to include in the response payload; 
+      #
+      #     e.g.: { tweet: %w[id username], media: %w[url] }
       # @return Hash an object with requested tweet fields
       def get_tweet(id:, fields: DEFAULT_FIELDS)
         url = "https://api.twitter.com/labs/2/tweets/#{id}"
@@ -17,7 +19,9 @@ module TwitterLabsAPI
 
       # Returns a variety of information about the Tweet specified by the requested ID or list of IDs.
       # @param [Array<String>] :ids the collection of requested Tweet IDs
-      # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
+      # @param [Hash] :fields a hash for fields to include in the response payload; 
+      #
+      #     e.g.: { tweet: %w[id username], media: %w[url] }
       # @return [Array<Hash>] of tweet objects with the requested tweet fields
       def get_tweets(ids:, fields: DEFAULT_FIELDS)
         url = 'https://api.twitter.com/labs/2/tweets'
@@ -38,7 +42,10 @@ module TwitterLabsAPI
 
       # The Labs recent search endpoint returns Tweets from the last 7 days that match a search query.
       # @param [String] :query the search query
-      # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
+      # @param [Hash] :fields a hash for fields to include in the response payload; 
+      #
+      #     e.g.: { tweet: %w[id username], media: %w[url] }
+      # @return [Array<Hash>] of tweet objects with the requested tweet fields
       def search(query:, fields: DEFAULT_FIELDS)
         url = 'https://api.twitter.com/labs/2/tweets/search'
         params = ParamsService.from_fields(fields)
