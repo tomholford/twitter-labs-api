@@ -32,14 +32,13 @@ api.get_tweet(id: '1234671272602193920')
 
 #### Specifying which fields to include in the response
 
-By default, the gem requests the 'default' fields for each entity. See the [API Reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference) for available fields. One can customize the response payload like so:
+By default, the gem requests the 'default' fields for each entity. See the [API Reference](https://developer.twitter.com/en/docs/labs/tweets-and-users/api-reference) for available fields. One can customize the response payload, depending on the requested resource.
 
+For example, to request the URL of a Tweet's embedded media item:
 ```ruby
-my_fields = %w[id author_id created_at text]
+requested_fields = { tweet: %w[id username], media: %w[url] }
 
-api.get_tweet(id: '1235508591232090112', tweet_fields: my_fields)
-
->> {"author_id"=>"229708614", "created_at"=>"2020-03-05T10:12:57.000Z", "id"=>"1235508591232090112", "text"=>"Hot take: coronavirus will not boost remote work in the long run because spur-of-the-moment work-from-home for in-person companies is likely to be a shitshow."}
+api.get_tweet(id: my_id, fields: requested_fields)
 ```
 
 #### API Errors
