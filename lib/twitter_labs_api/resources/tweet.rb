@@ -2,16 +2,15 @@ module TwitterLabsAPI
   module Resources
     module Tweet
       DEFAULT_TWEET_FIELDS = %w[id author_id created_at lang public_metrics].freeze
+      DEFAULT_FIELDS = { tweet: DEFAULT_TWEET_FIELDS }.freeze
 
       # Returns a variety of information about a single Tweet specified by the requested ID.
       # @param [String] :id the ID of the requested Tweet
       # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
       # @return Hash an object with requested tweet fields
-      def get_tweet(id:, tweet_fields: DEFAULT_TWEET_FIELDS)
+      def get_tweet(id:, fields: DEFAULT_FIELDS)
         url = "https://api.twitter.com/labs/2/tweets/#{id}"
-        params = {
-          'tweet.fields' => tweet_fields.join(',')
-        }.compact
+        params = ParamsService.from_fields(fields)
 
         make_request(url: url, params: params)
       end
@@ -20,12 +19,10 @@ module TwitterLabsAPI
       # @param [Array<String>] :ids the collection of requested Tweet IDs
       # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
       # @return [Array<Hash>] of tweet objects with the requested tweet fields
-      def get_tweets(ids:, tweet_fields: DEFAULT_TWEET_FIELDS)
+      def get_tweets(ids:, fields: DEFAULT_FIELDS)
         url = 'https://api.twitter.com/labs/2/tweets'
-        params = {
-          'ids' => ids.join(','),
-          'tweet.fields' => tweet_fields.join(',')
-        }.compact
+        params = ParamsService.from_fields(fields)
+        params.merge!({ ids: ids.join(',') })
 
         make_request(url: url, params: params, is_collection: true)
       end
@@ -42,13 +39,10 @@ module TwitterLabsAPI
       # The Labs recent search endpoint returns Tweets from the last 7 days that match a search query.
       # @param [String] :query the search query
       # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
-      # @param [Array<String>] :tweet_fields (["id", "author_id", "created_at", "lang", "public_metrics"]) the list of fields to retrieve for the given tweet
-      def search(query:, tweet_fields: DEFAULT_TWEET_FIELDS)
-        url = "https://api.twitter.com/labs/2/tweets/search"
-        params = {
-          'query' => query,
-          'tweet.fields' => tweet_fields.join(',')
-        }.compact
+      def search(query:, fields: DEFAULT_FIELDS)
+        url = 'https://api.twitter.com/labs/2/tweets/search'
+        params = ParamsService.from_fields(fields)
+        params.merge!({ query: query })
 
         make_request(url: url, params: params, is_collection: true)
       end
