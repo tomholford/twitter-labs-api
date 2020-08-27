@@ -1,5 +1,6 @@
 require_relative 'version'
 require_relative 'api_error'
+require_relative 'services/params_service'
 require_relative 'resources/tweet'
 require_relative 'resources/user'
 
