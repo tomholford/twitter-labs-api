@@ -1,3 +1,7 @@
+# 0.7.1 - 28 August 2020
+
+- Fix: add missing require statement
+
 # 0.7.0 - 28 August 2020
 
 - Refactor interface for requesting custom response fields
